@@ -1,0 +1,30 @@
+<div class="card flex justify-content-center ">
+  <p-card header="{{recipeDto?.name}}" [style]="{ width: '600px',' max-height':'2550px' , margin:'100px auto'}" class="form-card">
+    <ng-template pTemplate="header">
+      <img alt="Card" src='../assets/vegan.png' />
+    </ng-template>
+    <ng-template pTemplate="footer" >
+        <p><strong>Description:</strong> {{recipeDto?.description}}</p>
+        <p><strong>Ingredients:</strong></p>
+        <ol>
+          <span *ngFor="let ingredient of recipeDto?.ingredients">
+              <li>{{ingredient}}</li>
+          </span>
+        </ol>
+        <p><strong>Steps</strong></p>
+        <ol>
+        <span *ngFor="let step of recipeDto?.steps">
+              <li>{{step}}</li>
+        </span>
+        </ol>
+        <p><strong>Duration:</strong> {{recipeDto?.duration}} minute</p>
+        <p><strong>calories:</strong> {{recipeDto?.duration}}</p>
+        <p><strong>fat:</strong> {{recipeDto?.fat}}</p>
+        <p><strong>sugar:</strong> {{recipeDto?.sugar}}</p>
+        <p><strong>protein:</strong> {{recipeDto?.protein}}</p>
+        <p><strong>sodium:</strong> {{recipeDto?.sodium}}</p>
+        <p><strong>carbohydrates:</strong> {{recipeDto?.carbohydrates}}</p>
+
+    </ng-template>
+  </p-card>
+</div>

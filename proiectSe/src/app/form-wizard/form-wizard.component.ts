@@ -1,11 +1,13 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {StepsModule} from "primeng/steps";
 import {MenuItem} from "primeng/api";
-import {NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault} from "@angular/common";
+import {NgForOf, NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault} from "@angular/common";
 import {ButtonModule} from "primeng/button";
 import {QuestionCardComponent} from "../question-card/question-card.component";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {FormDTO} from "../model/form-dto";
+import {RecipeCardComponent} from "../recipe-card/recipe-card.component";
+import {RecipeDTO} from "../model/recipe-dto";
 
 @Component({
   selector: 'app-form-wizard',
@@ -18,7 +20,9 @@ import {FormDTO} from "../model/form-dto";
     ButtonModule,
     QuestionCardComponent,
     NgIf,
-    HttpClientModule
+    HttpClientModule,
+    RecipeCardComponent,
+    NgForOf
   ],
   templateUrl: './form-wizard.component.html',
   styleUrl: './form-wizard.component.css'
@@ -28,6 +32,8 @@ export class FormWizardComponent implements OnInit{
   http = inject(HttpClient);
   activeIndex: number = 0;
   formDto: FormDTO = new FormDTO();
+  recipeDTOs : RecipeDTO[] = [];
+
   constructor() {}
 
   onActiveIndexChange(event: number) {
@@ -61,9 +67,15 @@ export class FormWizardComponent implements OnInit{
     if(this.activeIndex<5){
        this.activeIndex ++ ;
     }
-    else{
-      this.http.post("http://localhost:8080/recipe",this.formDto).subscribe();
+    else {
+      this.http.post<RecipeDTO[]>("http://localhost:8080/recipe", this.formDto)
+        .subscribe(
+          (res: RecipeDTO[]) => {
+            this.recipeDTOs = res;
+          }
+        );
     }
+
 
   }
 
@@ -90,5 +102,11 @@ export class FormWizardComponent implements OnInit{
     }
 
     this.nextQuestion()
+  }
+
+  restart() {
+    this.activeIndex=0;
+    this.formDto = new FormDTO();
+    this.recipeDTOs = [];
   }
 }

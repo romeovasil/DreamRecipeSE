@@ -1,5 +1,5 @@
 
-<p-steps
+<p-steps *ngIf="recipeDTOs.length==0"
   [model]="items"
   [readonly]="true"
   [activeIndex]="activeIndex"
@@ -48,14 +48,27 @@
       (answer)="onAnswer($event,'sugar')">
     </app-question-card>
   </ng-container>
-  <ng-container *ngSwitchCase="5">
-    <app-question-card
-      [question]="'Duration:'"
-      [options]="['Short','Medium','Long']"
-      [pictureUrl]="'../assets/duration.png'"
-      (answer)="onAnswer($event,'duration')">
-    </app-question-card>
+  <ng-container *ngIf="!recipeDTOs.length">
+    <ng-container *ngSwitchCase="5 ">
+      <app-question-card
+        [question]="'Duration:'"
+        [options]="['Short','Medium','Long']"
+        [pictureUrl]="'../assets/duration.png'"
+        (answer)="onAnswer($event,'duration')">
+      </app-question-card>
+    </ng-container>
   </ng-container>
 
+  <ng-container *ngFor="let recipeDTO of recipeDTOs" >
+
+    <app-recipe-card *ngIf="recipeDTOs.length"
+      [recipeDto] = recipeDTO>
+    </app-recipe-card>
+
+  </ng-container>
+
+  <p-button (onClick)=restart()  *ngIf="recipeDTOs.length">
+    Restart
+  </p-button>
 
 </div>

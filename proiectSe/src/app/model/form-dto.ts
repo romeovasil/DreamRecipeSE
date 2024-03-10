@@ -5,4 +5,5 @@ export class FormDTO {
   highProtein: boolean = false;
   logSugar: boolean = false;
   duration: string | null = null;
+
 }
