@@ -1,0 +1,61 @@
+
+<p-steps
+  [model]="items"
+  [readonly]="true"
+  [activeIndex]="activeIndex"
+  (activeIndexChange)="onActiveIndexChange($event)">
+
+</p-steps>
+
+<div [ngSwitch]="activeIndex">
+  <ng-container *ngSwitchCase="0">
+    <app-question-card
+      [question]="'Are you a vegan?'"
+      [options]="['Yes','No']"
+      [pictureUrl]="'../assets/vegan.png'"
+      (answer)="onAnswer($event,'vegan')">
+    </app-question-card>
+  </ng-container>
+  <ng-container *ngSwitchCase="1">
+    <app-question-card
+      [question]="'Low sodium:'"
+      [options]="['Yes','No']"
+      [pictureUrl]="'../assets/sodium.png'"
+      (answer)="onAnswer($event,'sodium')">
+    </app-question-card>
+  </ng-container>
+  <ng-container *ngSwitchCase="2">
+    <app-question-card
+      [question]="'Low kcal?'"
+      [options]="['Yes','No']"
+      [pictureUrl]="'../assets/kcal.png'"
+      (answer)="onAnswer($event,'kcal')">
+    </app-question-card>
+  </ng-container>
+  <ng-container *ngSwitchCase="3">
+    <app-question-card
+      [question]="'High protein?'"
+      [pictureUrl]="'../assets/protein.png'"
+      [options]="['Yes','No']"
+      (answer)="onAnswer($event,'protein')">
+    </app-question-card>
+  </ng-container>
+  <ng-container *ngSwitchCase="4">
+    <app-question-card
+      [question]="'Low sugar?'"
+      [options]="['Yes','No']"
+      [pictureUrl]="'../assets/sugar.png'"
+      (answer)="onAnswer($event,'sugar')">
+    </app-question-card>
+  </ng-container>
+  <ng-container *ngSwitchCase="5">
+    <app-question-card
+      [question]="'Duration:'"
+      [options]="['Short','Medium','Long']"
+      [pictureUrl]="'../assets/duration.png'"
+      (answer)="onAnswer($event,'duration')">
+    </app-question-card>
+  </ng-container>
+
+
+</div>

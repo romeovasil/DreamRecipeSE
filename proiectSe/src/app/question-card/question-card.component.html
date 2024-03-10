@@ -1,0 +1,13 @@
+<div class="card flex justify-content-center ">
+  <p-card header="{{question}}" [style]="{ width: '600px', height:'600px' , margin:'100px auto'}" class="form-card">
+    <ng-template pTemplate="header">
+      <img alt="Card" src='{{pictureUrl}}' />
+    </ng-template>
+    <ng-template pTemplate="footer" >
+      <span *ngFor="let option of options">
+        <p-button (onClick)="answerQ(option)" label="{{option}}" icon="pi pi-check" [style]="{ margin: '3px', width: '100px' }"></p-button>
+      </span>
+
+  </ng-template>
+  </p-card>
+</div>
