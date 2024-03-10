@@ -18,11 +18,11 @@ import java.util.Locale;
 @RestController
 @RequestMapping("recipe")
 public class RecipeController {
-    List<RecipeDTO> recipeDTOS = new ArrayList<>();
 
     @PostMapping()
     public ResponseEntity<?> getForm(@RequestBody FormDTO formDTO){
         String csvFile =  System.getProperty("user.dir") + "/demo/src/main/resources/idk.csv";
+        List<RecipeDTO> recipeDTOS = new ArrayList<>();
         try (CSVReader reader = new CSVReader(new FileReader(csvFile))) {
             List<String[]> rows = reader.readAll();
             String firstQuery = formDTO.getVegan() ? "Veg" : "Non-veg";
@@ -37,7 +37,7 @@ public class RecipeController {
                 if (row.length > 0 && row[14].equals(firstQuery) && row[15].equals(secondQuery) && row[16].equals(thirdQuery)
                         && row[17].equals(fourthQuery) && row[18].equals(fifthQuery) && row[19].equals(sixthsQuery)) {
 
-                    count ++;
+                    count++;
                     RecipeDTO recipeDTO = new RecipeDTO();
                     recipeDTO.setName(row[0]);
                     recipeDTO.setDuration(row[1]);
