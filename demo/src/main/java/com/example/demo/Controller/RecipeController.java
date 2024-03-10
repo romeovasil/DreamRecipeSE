@@ -44,6 +44,12 @@ public class RecipeController {
                     recipeDTO.setDescription(row[4]);
                     recipeDTO.setIngredients(row[5]);
                     recipeDTO.setSteps(row[3]);
+                    recipeDTO.setCalories(row[7]);
+                    recipeDTO.setFat(row[8]);
+                    recipeDTO.setSugar(row[9]);
+                    recipeDTO.setSodium(row[10]);
+                    recipeDTO.setProtein(row[11]);
+                    recipeDTO.setCarbohydrates(row[13]);
                     recipeDTOS.add(recipeDTO);
 
                 }
