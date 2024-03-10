@@ -1,10 +1,12 @@
 package com.example.demo.Domain;
 
+import java.util.List;
+
 public class RecipeDTO {
     String name;
     String description;
-    String ingredients;
-    String steps;
+    List<String> ingredients;
+    List<String> steps;
     String duration;
     String calories;
     String fat;
@@ -82,19 +84,19 @@ public class RecipeDTO {
         this.description = description;
     }
 
-    public String getIngredients() {
+    public List<String> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(String ingredients) {
+    public void setIngredients(List<String> ingredients) {
         this.ingredients = ingredients;
     }
 
-    public String getSteps() {
+    public List<String> getSteps() {
         return steps;
     }
 
-    public void setSteps(String steps) {
+    public void setSteps(List<String> steps) {
         this.steps = steps;
     }
 

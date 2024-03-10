@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600, allowCredentials="true")
 @RestController
@@ -42,8 +44,24 @@ public class RecipeController {
                     recipeDTO.setName(row[0]);
                     recipeDTO.setDuration(row[1]);
                     recipeDTO.setDescription(row[4]);
-                    recipeDTO.setIngredients(row[5]);
-                    recipeDTO.setSteps(row[3]);
+                    List<String> ingredients = new ArrayList<>();
+                    List<String> steps = new ArrayList<>();
+
+                    Pattern pattern = Pattern.compile("'([^']*)'");
+                    Matcher matcher = pattern.matcher(row[5]);
+
+
+                    while (matcher.find()) {
+                        ingredients.add(matcher.group(1));
+                    }
+
+                    matcher = pattern.matcher(row[3]);
+                    while (matcher.find()) {
+                        steps.add(matcher.group(1));
+                    }
+
+                    recipeDTO.setIngredients(ingredients);
+                    recipeDTO.setSteps(steps);
                     recipeDTO.setCalories(row[7]);
                     recipeDTO.setFat(row[8]);
                     recipeDTO.setSugar(row[9]);
